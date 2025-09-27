@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bveju7bgy8kwb" path="res://fan.jpg" id="1_8vgsl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l2ec"]
-size = Vector2(67.5, 429.25)
+size = Vector2(80.5, 377.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ml7w"]
 size = Vector2(69, 102)
@@ -15,7 +15,7 @@ script = ExtResource("1_7l2ec")
 [node name="fan_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fan_area"]
-position = Vector2(-1.25, -260.375)
+position = Vector2(0.25, -236.375)
 shape = SubResource("RectangleShape2D_7l2ec")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

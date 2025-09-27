@@ -26,3 +26,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 			
 	move_and_slide()
+func reset_to_start() -> void:
+	global_position = Vector2(514, 343)
+	
+	#velocity = Vector2.ZERO  # Optional: clear any motion
