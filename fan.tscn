@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqs8tvmbeivkr"]
+
+[ext_resource type="Script" uid="uid://nuo60rdq3ixm" path="res://propeller.gd" id="1_7l2ec"]
+[ext_resource type="Texture2D" uid="uid://bveju7bgy8kwb" path="res://fan.jpg" id="1_8vgsl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l2ec"]
+size = Vector2(67.5, 429.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ml7w"]
+size = Vector2(69, 102)
+
+[node name="fan2" type="Node2D"]
+script = ExtResource("1_7l2ec")
+
+[node name="fan_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fan_area"]
+position = Vector2(-1.25, -260.375)
+shape = SubResource("RectangleShape2D_7l2ec")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-1.9999695, 10)
+scale = Vector2(0.07852194, 0.078521915)
+texture = ExtResource("1_8vgsl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1.5, 10)
+shape = SubResource("RectangleShape2D_3ml7w")
+
+[connection signal="body_entered" from="fan_area" to="." method="_on_fan_area_body_entered"]
