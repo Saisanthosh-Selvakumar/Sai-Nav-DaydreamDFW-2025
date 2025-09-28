@@ -9,4 +9,3 @@ func _on_fan_area_body_entered(body: Node2D) -> void:
 		body.set_velocity(Vector2(body.velocity.x, -1000))
 	else:
 		print("Unsupported body type: ", body)
-		
