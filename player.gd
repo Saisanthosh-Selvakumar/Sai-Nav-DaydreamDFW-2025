@@ -10,6 +10,10 @@ var jumping = false
 func _ready() -> void:
 	vignette.visible = false
 	vignette.modulate.a = 0.0
+
+func apply_jet_force(force: Vector2) -> void:
+	print("Jet force applied")
+	velocity += force
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -19,7 +23,9 @@ func _physics_process(delta: float) -> void:
 	if (selection == "none" && global_position[0] >= 1500):
 		reset_to_start()
 		
-		# Handle jump.
+	
+	
+	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not jumping:
 		jumping = true
 		jump_with_delay()
@@ -43,7 +49,7 @@ func reset_to_start() -> void:
 	global_position = Vector2(-5, -12)
 
 @onready var _animated_sprite = $PlayerSprite
-var walk_speed_scale : float = 2
+var walk_speed_scale : float = 1.5
 
 func _process(_delta):
 	if Input.is_action_pressed("right"):
