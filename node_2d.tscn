@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://csw72ntsjxi3p"]
+
+[sub_resource type="GDScript" id="GDScript_y32ns"]
+script/source = "extends Area2D
+
+# Expose this if you want to read it from other scripts
+var is_pressed := false
+
+@export var unpressed_sprite: Texture2D
+@export var pressed_sprite: Texture2D
+
+@onready var sprite = $Sprite2D
+
+func _ready():
+	connect(\"body_entered\", self, \"_on_body_entered\")
+	connect(\"body_exited\", self, \"_on_body_exited\")
+
+func _on_body_entered(body):
+	if body.is_in_group(\"player\") and not is_pressed:
+		is_pressed = true
+		sprite.texture = pressed_sprite
+		print(\"Button pressed!\")
+
+func _on_body_exited(body):
+	# Optional: Uncomment below if you want the button to reset
+	# if body.is_in_group(\"player\"):
+	#     is_pressed = false
+	#     sprite.texture = unpressed_sprite
+	pass
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_y32ns")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

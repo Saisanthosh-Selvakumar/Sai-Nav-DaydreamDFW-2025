@@ -1,32 +1,65 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqs8tvmbeivkr"]
+[gd_scene load_steps=9 format=3 uid="uid://bqs8tvmbeivkr"]
 
 [ext_resource type="Script" uid="uid://nuo60rdq3ixm" path="res://propeller.gd" id="1_7l2ec"]
-[ext_resource type="Texture2D" uid="uid://bveju7bgy8kwb" path="res://fan.jpg" id="1_8vgsl"]
+[ext_resource type="Texture2D" uid="uid://bvci5x1de4p8n" path="res://GeyserFan.png" id="2_7l2ec"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l2ec"]
-size = Vector2(80.5, 377.25)
+size = Vector2(69, 214.625)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ml7w"]
-size = Vector2(69, 102)
+size = Vector2(68.25, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ml7w"]
+atlas = ExtResource("2_7l2ec")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc01m"]
+atlas = ExtResource("2_7l2ec")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoasc"]
+atlas = ExtResource("2_7l2ec")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5n3l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ml7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc01m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qoasc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="fan2" type="Node2D"]
+position = Vector2(1, -24)
 script = ExtResource("1_7l2ec")
 
 [node name="fan_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fan_area"]
-position = Vector2(0.25, -236.375)
+position = Vector2(0.5, -102.6875)
 shape = SubResource("RectangleShape2D_7l2ec")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(-1.9999695, 10)
-scale = Vector2(0.07852194, 0.078521915)
-texture = ExtResource("1_8vgsl")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1.5, 10)
+position = Vector2(0, 70)
 shape = SubResource("RectangleShape2D_3ml7w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+texture_filter = 1
+position = Vector2(1, 41)
+scale = Vector2(2.1875, 2.1875)
+sprite_frames = SubResource("SpriteFrames_v5n3l")
+autoplay = "default"
+frame_progress = 0.24476136
 
 [connection signal="body_entered" from="fan_area" to="." method="_on_fan_area_body_entered"]

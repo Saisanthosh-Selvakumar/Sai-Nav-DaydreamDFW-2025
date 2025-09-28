@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
-
-const SPEED = 500.0
-const JUMP_VELOCITY = -700.0
+var SPEED = 300.0
+var JUMP_VELOCITY = -300.0
 
 func apply_jet_force(force: Vector2) -> void:
 	print("Jet force applied")
@@ -10,7 +9,7 @@ func apply_jet_force(force: Vector2) -> void:
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor(): 
 		velocity += get_gravity() * delta
 
 	# Handle jump.
@@ -26,7 +25,19 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 			
 	move_and_slide()
+
 func reset_to_start() -> void:
 	global_position = Vector2(514, 343)
-	
-	#velocity = Vector2.ZERO  # Optional: clear any motion
+
+@onready var _animated_sprite = $PlayerSprite
+var walk_speed_scale : float = 1.5
+
+func _process(_delta):
+	if Input.is_action_pressed("right"):
+		_animated_sprite.play("right")
+		_animated_sprite.speed_scale = walk_speed_scale
+	elif Input.is_action_pressed("left"):
+		_animated_sprite.play("left")
+		_animated_sprite.speed_scale = walk_speed_scale
+	else:
+		_animated_sprite.stop()
