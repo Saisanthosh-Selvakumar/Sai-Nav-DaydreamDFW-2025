@@ -19,3 +19,4 @@ func _on_body_entered(body):
 				node.frames = new_frames
 				node.animation = "default"
 				node.play()
+		body.selection = "identity"
