@@ -15,10 +15,6 @@ run/main_scene="uid://ni46rwn4bvs1"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
-[global_group]
-
-changeable_sprites=""
-
 [input]
 
 left={
